@@ -142,7 +142,7 @@ async def run_payback(state: AdvisorState) -> dict[str, Any]:
                     f"NREL PVWatts v8: {system_kw} kW system at ({lat:.2f}, {lon:.2f}) → "
                     f"{production.ac_annual_kwh:,.0f} kWh/year"
                 ),
-                "url": "https://developer.nrel.gov/docs/solar/pvwatts/v8/",
+                "url": "https://developer.nlr.gov/docs/solar/pvwatts/v8/",
             }
         )
     if incentives:

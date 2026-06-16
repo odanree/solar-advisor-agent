@@ -43,7 +43,7 @@ async def estimate_production(
     try:
         async with httpx.AsyncClient(timeout=timeout) as client:
             r = await client.get(
-                "https://developer.nrel.gov/api/pvwatts/v8.json", params=params
+                "https://developer.nlr.gov/api/pvwatts/v8.json", params=params
             )
     except httpx.HTTPError as e:
         raise SourceNetworkError(f"PVWatts request failed: {e}") from e

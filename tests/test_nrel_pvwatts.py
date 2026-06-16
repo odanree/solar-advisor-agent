@@ -8,7 +8,7 @@ from advisor.sources.nrel_pvwatts import estimate_production
 
 @respx.mock
 async def test_estimate_production_success():
-    respx.get("https://developer.nrel.gov/api/pvwatts/v8.json").mock(
+    respx.get("https://developer.nlr.gov/api/pvwatts/v8.json").mock(
         return_value=httpx.Response(
             200,
             json={
@@ -32,7 +32,7 @@ async def test_estimate_production_success():
 
 @respx.mock
 async def test_estimate_production_http_error():
-    respx.get("https://developer.nrel.gov/api/pvwatts/v8.json").mock(
+    respx.get("https://developer.nlr.gov/api/pvwatts/v8.json").mock(
         return_value=httpx.Response(403, text="forbidden")
     )
     with pytest.raises(SourceHttpError):
@@ -43,7 +43,7 @@ async def test_estimate_production_http_error():
 
 @respx.mock
 async def test_estimate_production_api_errors():
-    respx.get("https://developer.nrel.gov/api/pvwatts/v8.json").mock(
+    respx.get("https://developer.nlr.gov/api/pvwatts/v8.json").mock(
         return_value=httpx.Response(
             200,
             json={"outputs": {}, "errors": ["invalid lat/lon"]},
