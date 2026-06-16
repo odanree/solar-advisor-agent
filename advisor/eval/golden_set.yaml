@@ -1,0 +1,82 @@
+# Solar Advisor golden set — 10 cases.
+#
+# Each case: a user question + expected intent + reference points the answer
+# should hit (faithfulness signal for evalkit). The full reference text is not
+# required; evalkit's GEval judge scores against the rubric defined in run.py.
+
+cases:
+  - id: cost_ca_5_8_standard
+    question: "What's the typical $/W for a 5-8 kW standard system in California?"
+    expected_intent: cost_lookup
+    reference: |
+      California median $/W for 5-8 kW standard system is approximately $3.35/W
+      based on the Solar Cost Explorer data. Local installers may charge slightly
+      more than national.
+
+  - id: cost_hawaii_outlier
+    question: "How does Hawaii compare on solar installation cost?"
+    expected_intent: cost_lookup
+    reference: |
+      Hawaii is the highest-cost market in the dataset, with $/W roughly 40-50%
+      above mainland averages due to import logistics and grid complexity.
+
+  - id: cost_texas_5_8
+    question: "Median price per watt for a 5-8 kW system in Texas?"
+    expected_intent: cost_lookup
+    reference: |
+      Texas median for 5-8 kW standard local is around $2.90/W, among the cheaper
+      US residential solar markets.
+
+  - id: cost_premium_tier
+    question: "How much more does a premium panel tier cost in California vs standard?"
+    expected_intent: cost_lookup
+    reference: |
+      Premium tier adds roughly $0.30/W over standard; premium-plus adds another
+      ~$0.40/W. So a CA 5-8 kW premium runs about $3.70/W median.
+
+  - id: cost_compare_local_national
+    question: "Is it cheaper to use a national installer vs a local one?"
+    expected_intent: cost_lookup
+    reference: |
+      National installers typically charge $0.10-0.15/W less than local installers
+      for the same system size in the same state, reflecting their scale advantage
+      on materials procurement.
+
+  - id: payback_ca_6kw
+    question: "Is a 6 kW solar system worth it in California?"
+    expected_intent: payback_estimate
+    reference: |
+      A 6 kW system in California, after the 30% federal Residential Clean Energy
+      Credit, typically pays back in roughly 5-8 years given CA's high electricity
+      rates and strong solar resource.
+
+  - id: payback_texas_6kw
+    question: "Payback period for solar in Texas with a 6 kW system?"
+    expected_intent: payback_estimate
+    reference: |
+      Texas payback is longer than California despite lower system cost because
+      Texas residential electricity rates are lower. Typically 8-12 years.
+
+  - id: payback_hawaii_5kw
+    question: "Is solar worth it in Hawaii?"
+    expected_intent: payback_estimate
+    reference: |
+      Hawaii has the country's highest electricity rates AND the highest system
+      costs. The two largely cancel out — payback is competitive, often 5-7 years
+      depending on system size and federal tax credit usage.
+
+  - id: payback_nj_8kw
+    question: "How long until solar pays off in New Jersey for an 8 kW system?"
+    expected_intent: payback_estimate
+    reference: |
+      New Jersey benefits from the federal 30% credit plus state SREC/NY-Sun-style
+      incentives. Payback is typically 6-9 years given the state's high
+      electricity rates.
+
+  - id: payback_default_size
+    question: "Should I get solar in Arizona?"
+    expected_intent: payback_estimate
+    reference: |
+      Arizona has strong solar resource (high kWh/m²/day) and moderate
+      electricity rates. Payback for a default 6 kW system is typically 7-10
+      years after the federal credit.

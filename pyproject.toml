@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "solar-advisor-agent"
+version = "0.1.0"
+description = "Composite-data LangGraph agent that answers solar-economics questions by combining your own Solar Cost Explorer GraphQL with NREL PVWatts, DSIRE, and EIA public APIs."
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [{name = "Danh Le"}]
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "langgraph>=0.2.50",
+    "langchain-anthropic>=0.2",
+    "anthropic>=0.40",
+    "httpx>=0.27",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "python-dotenv>=1.0",
+    "langfuse>=2.50",
+    "agent-governance @ git+https://github.com/odanree/agent-governance.git@v0.2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "respx>=0.21",
+    "ruff>=0.7",
+    "mypy>=1.13",
+]
+eval = [
+    "evalkit @ git+https://github.com/odanree/evalkit.git@main",
+    "pyyaml>=6.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["advisor"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B", "UP"]
