@@ -36,6 +36,10 @@ eval = [
     "pyyaml>=6.0",
 ]
 
+[tool.hatch.metadata]
+# Allows direct URL deps in `project.dependencies` (the agent-governance git pin).
+allow-direct-references = true
+
 [tool.hatch.build.targets.wheel]
 packages = ["advisor"]
 
